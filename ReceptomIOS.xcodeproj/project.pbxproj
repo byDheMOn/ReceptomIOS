@@ -11,6 +11,12 @@
 		2303F0C82B455665003D7256 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303F0C72B455665003D7256 /* ContentView.swift */; };
 		2303F0CA2B455666003D7256 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2303F0C92B455666003D7256 /* Assets.xcassets */; };
 		2303F0CD2B455666003D7256 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2303F0CC2B455666003D7256 /* Preview Assets.xcassets */; };
+		2303F0D72B45579B003D7256 /* IngredientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303F0D62B45579B003D7256 /* IngredientsListView.swift */; };
+		2303F0D92B4557FF003D7256 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303F0D82B4557FF003D7256 /* RecipeListView.swift */; };
+		2303F0DB2B455860003D7256 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303F0DA2B455860003D7256 /* HomePageView.swift */; };
+		23ED0C162B45BA53009B865A /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ED0C152B45BA53009B865A /* RecipeDetailView.swift */; };
+		23ED0C182B45BA7C009B865A /* IngredientsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ED0C172B45BA7C009B865A /* IngredientsDetailView.swift */; };
+		23ED0C1B2B45CD5D009B865A /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 23ED0C1A2B45CD5D009B865A /* SlidingTabView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,11 @@
 		2303F0C72B455665003D7256 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2303F0C92B455666003D7256 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2303F0CC2B455666003D7256 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2303F0D62B45579B003D7256 /* IngredientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListView.swift; sourceTree = "<group>"; };
+		2303F0D82B4557FF003D7256 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		2303F0DA2B455860003D7256 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		23ED0C152B45BA53009B865A /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		23ED0C172B45BA7C009B865A /* IngredientsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23ED0C1B2B45CD5D009B865A /* SlidingTabView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +63,8 @@
 		2303F0C42B455665003D7256 /* ReceptomIOS */ = {
 			isa = PBXGroup;
 			children = (
+				23ED0C142B45BA22009B865A /* Detail */,
+				2303F0D32B455692003D7256 /* Master */,
 				2303F0C52B455665003D7256 /* ReceptomIOSApp.swift */,
 				2303F0C72B455665003D7256 /* ContentView.swift */,
 				2303F0C92B455666003D7256 /* Assets.xcassets */,
@@ -65,6 +79,25 @@
 				2303F0CC2B455666003D7256 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2303F0D32B455692003D7256 /* Master */ = {
+			isa = PBXGroup;
+			children = (
+				2303F0D62B45579B003D7256 /* IngredientsListView.swift */,
+				2303F0D82B4557FF003D7256 /* RecipeListView.swift */,
+				2303F0DA2B455860003D7256 /* HomePageView.swift */,
+			);
+			path = Master;
+			sourceTree = "<group>";
+		};
+		23ED0C142B45BA22009B865A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				23ED0C152B45BA53009B865A /* RecipeDetailView.swift */,
+				23ED0C172B45BA7C009B865A /* IngredientsDetailView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +116,9 @@
 			dependencies = (
 			);
 			name = ReceptomIOS;
+			packageProductDependencies = (
+				23ED0C1A2B45CD5D009B865A /* SlidingTabView */,
+			);
 			productName = ReceptomIOS;
 			productReference = 2303F0C22B455665003D7256 /* ReceptomIOS.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +147,9 @@
 				Base,
 			);
 			mainGroup = 2303F0B92B455665003D7256;
+			packageReferences = (
+				23ED0C192B45CD5D009B865A /* XCRemoteSwiftPackageReference "SlidingTabView" */,
+			);
 			productRefGroup = 2303F0C32B455665003D7256 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +176,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23ED0C182B45BA7C009B865A /* IngredientsDetailView.swift in Sources */,
 				2303F0C82B455665003D7256 /* ContentView.swift in Sources */,
+				23ED0C162B45BA53009B865A /* RecipeDetailView.swift in Sources */,
+				2303F0D92B4557FF003D7256 /* RecipeListView.swift in Sources */,
 				2303F0C62B455665003D7256 /* ReceptomIOSApp.swift in Sources */,
+				2303F0D72B45579B003D7256 /* IngredientsListView.swift in Sources */,
+				2303F0DB2B455860003D7256 /* HomePageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +386,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		23ED0C192B45CD5D009B865A /* XCRemoteSwiftPackageReference "SlidingTabView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/QuynhNguyen/SlidingTabView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23ED0C1A2B45CD5D009B865A /* SlidingTabView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 23ED0C192B45CD5D009B865A /* XCRemoteSwiftPackageReference "SlidingTabView" */;
+			productName = SlidingTabView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2303F0BA2B455665003D7256 /* Project object */;
 }
