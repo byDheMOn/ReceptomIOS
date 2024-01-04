@@ -8,6 +8,7 @@ import SwiftUI
 
 
 struct HomePageView: View {
+    @EnvironmentObject var coordinator: Coordinator
     init() {
            // Configuración personalizada de la barra de navegación
            UINavigationBar.appearance().barTintColor = UIColor.black
@@ -20,13 +21,13 @@ struct HomePageView: View {
                 Color.orange.edgesIgnoringSafeArea(.all) // Fondo naranja para toda la vista
                 
                 TabView {
-                    IngredientsListView()
+                    coordinator.makeIngredientsListView()
                         .tabItem {
                             Label("Buscar", systemImage: "magnifyingglass")
                         }
                         .tag(0)
 
-                    RecipesListView()
+                    coordinator.makeRecipeListView()
                         .tabItem {
                             Label("Recetas", systemImage: "book")
                         }
@@ -42,5 +43,6 @@ struct HomePageView: View {
 
 
 #Preview {
-    HomePageView()
+    let coordinator = Coordinator()
+    return coordinator.makeHomePageView()
 }

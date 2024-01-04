@@ -5,4 +5,6 @@
 //  Created by Jorge Ordax on 4/1/24.
 //
 
-import Foundation
+protocol ChatgptRemoteService {
+    func getChatResponse(order: Order) async throws -> [String]
+}

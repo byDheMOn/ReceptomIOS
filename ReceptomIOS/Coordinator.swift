@@ -6,3 +6,40 @@
 //
 
 import Foundation
+
+class Coordinator: ObservableObject {
+    private let chatgptRepository: ChatgptRepository
+    private let getChatgptResponseUseCase: GetChatgptResponseUseCase
+    private let liveChatgptRemoteService: LiveChatgptRemoteService
+    
+    init() {
+        let networkClient = URLSessionNetworkClient()
+        liveChatgptRemoteService = LiveChatgptRemoteService(networkClient: networkClient)
+        chatgptRepository = ChatgptRepository(remoteService: liveChatgptRemoteService)
+        getChatgptResponseUseCase = GetChatgptResponseUseCase(chatgptRepository: chatgptRepository)
+    }
+    
+    func makeHomePageView() -> HomePageView {
+        HomePageView()
+    }
+    
+    func makeRecipeListView() -> RecipesListView {
+        RecipesListView()
+    }
+    
+    func makeRecipeDetailView() -> RecipeDetailView {
+        RecipeDetailView()
+    }
+    
+    func makeIngredientsListView() -> IngredientsListView {
+        IngredientsListView()
+    }
+    
+    func makeIngredientsDetailView() -> IngredientsDetailView {
+        IngredientsDetailView(viewModel: makeChatgptViewModel())
+    }
+    
+    private func makeChatgptViewModel() -> ChatgptViewModel {
+        .init(getChatgptResponseUseCase: getChatgptResponseUseCase)
+    }
+}

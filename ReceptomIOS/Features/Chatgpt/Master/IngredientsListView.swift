@@ -11,7 +11,7 @@ struct IngredientsListView: View {
     @State private var isAddingIngredient = false
     @State private var newIngredient = ""
     @State private var showAlert = false
-
+    @EnvironmentObject var coordinator: Coordinator
     var body: some View {
         NavigationView {
             VStack {
@@ -71,10 +71,7 @@ struct IngredientsListView: View {
                             showAlert = true
                         }
                     }) {
-                        NavigationLink(destination: IngredientsDetailView(nameRecipe: "Nombre de la receta",
-                                       ingredientsRecipe: ["Ingrediente 1", "Ingrediente 2", "Ingrediente 3"],
-                                       instructionsRecipe: "Instrucciones para la receta...",
-                                       servingRecipe: "4 personas") ){
+                        NavigationLink(destination: coordinator.makeIngredientsDetailView ){
                                                Label("Buscar", systemImage: "magnifyingglass")
                                                    .foregroundColor(.black)
                                                    .padding()

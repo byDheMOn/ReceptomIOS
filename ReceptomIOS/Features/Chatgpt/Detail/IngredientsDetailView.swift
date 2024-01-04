@@ -7,12 +7,12 @@
 
 import SwiftUI
 struct IngredientsDetailView: View {
-    let nameRecipe: String
-    let ingredientsRecipe: [String]
-    let instructionsRecipe: String
-    let servingRecipe: String
-    @State private var isLoading: Bool = false
-
+    @EnvironmentObject var coordinator: Coordinator
+    @StateObject private var viewModel: ChatgptViewModel
+    
+    init( viewModel: ChatgptViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     var body: some View {
         VStack {
             Spacer()
@@ -20,7 +20,7 @@ struct IngredientsDetailView: View {
             VStack {
                 // Contenedor del nombre de la receta
                 VStack {
-                    Text(nameRecipe)
+                    Text("Nombre de la receta")
                         .fontWeight(.bold)
                         .padding()
                         .background(Color.white)
@@ -39,21 +39,19 @@ struct IngredientsDetailView: View {
                             Text("PREPARACION:")
                                 .fontWeight(.bold)
                                 .padding(.top, 10)
-                            Text(instructionsRecipe)
+                            Text("Preparacion de la receta")
                             
                             // Ingredientes
                             Text("INGREDIENTES:")
                                 .fontWeight(.bold)
                                 .padding(.top, 10)
-                            ForEach(ingredientsRecipe, id: \.self) { ingredient in
-                                Text(ingredient)
-                            }
+                                Text("1, 2 ,3 ")
                             
                             // Cantidad
                             Text("CANTIDAD:")
                                 .fontWeight(.bold)
                                 .padding(.top, 8)
-                            Text(servingRecipe)
+                            Text("EJ 4 Personas")
                         }
                         .padding(12)
                         .background(Color.white)
@@ -62,19 +60,18 @@ struct IngredientsDetailView: View {
                     }
                     .frame(width: 300, height: 350)
                 //}
-                
-                // Contenido visible cuando está cargando
-                if isLoading {
-                 
-                }
+
                 
                 Spacer()
                 
                 // Botones Siguiente y Guardar
                 HStack {
                     Button(action: {
-                        // Acción para Siguiente
-                        _loadRecipe(false, nameRecipe)
+                        let order = Order(ingredients: ["ingredient1", "ingredient2"], mode: true, recipeName: "RecipeName")
+                            Task {
+                                await viewModel.getChatgptResponse(order: order)
+                            }
+                      
                     }) {
                         Text("Siguiente")
                         Image(systemName: "arrow.right.circle.fill")
@@ -106,22 +103,14 @@ struct IngredientsDetailView: View {
         .padding()
         .onAppear {
             // Inicialización y carga de datos
-            _loadRecipe(true, nameRecipe)
+          
         }
     }
 
-    private func _loadRecipe(_ isLoading: Bool, _ nameRecipe: String) {
-        // Lógica para cargar la receta
-        // ...
-        
-        // Actualizar estado de carga
-        self.isLoading = isLoading
-    }
+  
 }
 
 #Preview {
-    IngredientsDetailView(nameRecipe: "Nombre de la receta",
-                          ingredientsRecipe: ["Ingrediente 1", "Ingrediente 2", "Ingrediente 3"],
-                          instructionsRecipe: "Instrucciones para la receta...",
-                          servingRecipe: "4 personas")
+    let coordinator = Coordinator()
+    return coordinator.makeIngredientsDetailView()
 }

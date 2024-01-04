@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ReceptomIOSApp: App {
+    let coordinator = Coordinator()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomePageView()
+                .environmentObject(coordinator)
         }
     }
 }

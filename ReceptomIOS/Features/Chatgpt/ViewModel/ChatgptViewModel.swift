@@ -6,3 +6,21 @@
 //
 
 import Foundation
+class ChatgptViewModel : ObservableObject {
+    private let getChatgptResponseUseCase: GetChatgptResponseUseCase
+    @Published var recipe = [String]()
+    @Published var showErrorMessage = false
+    init(getChatgptResponseUseCase: GetChatgptResponseUseCase) {
+        self.getChatgptResponseUseCase = getChatgptResponseUseCase
+    }
+    
+    func getChatgptResponse(order: Order) async {
+        do {
+            print("ViewModel ON")
+            recipe = try await getChatgptResponseUseCase.execute(order: order)
+            print("ViewModel ON")
+        }catch {
+            showErrorMessage = true
+        }
+    }
+}

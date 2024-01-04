@@ -5,4 +5,14 @@
 //  Created by Jorge Ordax on 4/1/24.
 //
 
-import Foundation
+struct GetChatgptResponseUseCase {
+    private let chatgptRepository: ChatgptRepository
+    init(chatgptRepository: ChatgptRepository) {
+        self.chatgptRepository = chatgptRepository
+    }
+     
+    func execute(order: Order) async throws -> [String] {
+        
+        try await chatgptRepository.getChatResponse(order: order)
+    }
+}

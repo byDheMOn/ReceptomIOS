@@ -9,6 +9,7 @@ import SwiftUI
 struct RecipesListView: View {
     @State private var recipeList: [String] = ["Receta 1","Receta 2"]
     @State private var isRefreshing = false
+    @EnvironmentObject var coordinator: Coordinator
     init() {
           // Configuración personalizada de la barra de navegación para esta vista
           UINavigationBar.appearance().tintColor = UIColor.black
@@ -29,7 +30,7 @@ struct RecipesListView: View {
                     ScrollView {
                         ForEach(recipeList, id: \.self) { item in
                             NavigationLink(
-                                    destination: RecipeDetailView(nameRecipe: "Nombre Receta", ingredientsRecipe: ["Ingrediente 1","Ingrediente 2","Ingrediente 3"], instructionsRecipe:"Instrucciones de la receta..." , servingRecipe: "Ej: 4 personas"), 
+                                destination: coordinator.makeRecipeDetailView(),
                                     label: {
                                         HStack {
                                             Spacer()
@@ -85,6 +86,7 @@ struct RecipesListView: View {
     }
 }
 #Preview {
-    RecipesListView()
+    let coordinator = Coordinator()
+    return coordinator.makeRecipeListView()
 }
 
