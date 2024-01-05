@@ -7,18 +7,23 @@
 import SwiftUI
 
 struct IngredientsListView: View {
-    @State private var ingredientsList: [String] = ["es","es","es",]
+    @State private var ingredientsList: [String] = []
     @State private var isAddingIngredient = false
     @State private var newIngredient = ""
     @State private var showAlert = false
     @EnvironmentObject var coordinator: Coordinator
+    @StateObject private var viewModel: ChatgptViewModel
+    
+    init( viewModel: ChatgptViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     var body: some View {
         NavigationView {
             VStack {
                 Text("Tabla de ingredientes")
                     .font(.headline)
                     .padding(EdgeInsets(top: 10.0, leading: 0, bottom: 0, trailing: 0))
-
+                
                 if ingredientsList.isEmpty {
                     Spacer()
                     Text("Lista vacía, pulsa en el botón 'Añadir' para agregar tantos ingredientes como quieras y posteriormente en el botón 'Buscar'.")
@@ -31,11 +36,10 @@ struct IngredientsListView: View {
                             HStack {
                                 Text(item)
                                     .padding(8.0)
-
+                                
                                 Spacer()
-
+                                
                                 Button(action: {
-                                    // Eliminar el ingrediente al pulsar el botón de eliminar
                                     removeIngredient(item)
                                 }) {
                                     Image(systemName: "xmark.circle")
@@ -52,34 +56,32 @@ struct IngredientsListView: View {
                         }
                     }
                     .padding(EdgeInsets(top: 0, leading: 30, bottom: 300, trailing: 30))
-                   
+                    
                 }
-
+                
                 Spacer()
                 Text("Esta es la lista de ingredientes necesarios para encontrar una receta ")
                     .font(.subheadline)
                     .padding(EdgeInsets(top: 10.0, leading: 20, bottom: 20, trailing: 20))
                 HStack(spacing: 16) {
                     Button(action: {
-                        if !ingredientsList.isEmpty {
-
-                            print("Navigate to Ingredients Detail")
-                        } else {
-                            // Mostrar un mensaje en SwiftUI
-                            // En lugar de usar ScaffoldMessenger, puedes utilizar Alert o un Banner personalizado
-                            // Dependiendo de la versión de SwiftUI y las bibliotecas que estés utilizando
-                            showAlert = true
+                        if ingredientsList.isEmpty {
+                                showAlert = true
                         }
                     }) {
-                        NavigationLink(destination: coordinator.makeIngredientsDetailView ){
-                                               Label("Buscar", systemImage: "magnifyingglass")
-                                                   .foregroundColor(.black)
-                                                   .padding()
-                                                   .background(Color.orange)
-                                                   .cornerRadius(8)
-                                                   .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                                           }
+                        NavigationLink(destination: coordinator.makeIngredientsDetailView(with: ingredientsList)){
+                            Label("Buscar", systemImage: "magnifyingglass")
+                                .foregroundColor(.black)
+                                .padding()
+                                .background(Color.orange)
+                                .cornerRadius(8)
+                                .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                        }
                     }
+                    .disabled(ingredientsList.isEmpty)
+                    //.sheet(isPresented: $coordinator.isDetailViewPresented) {
+                      //  coordinator.makeIngredientsDetailView()
+                    //}
                     .alert(isPresented: $showAlert) {
                         Alert(
                             title: Text("Lista de ingredientes vacía"),
@@ -100,14 +102,19 @@ struct IngredientsListView: View {
                     }
                     .sheet(isPresented: $isAddingIngredient) {
                         // Diálogo para añadir ingredientes
-                        VStack(alignment: .leading, spacing: 16) {
+                        VStack(alignment: .center, spacing: 16) {
+                            Spacer()// Alinea los elementos al centro
                             Text("Añadir Ingrediente")
                                 .font(.title)
                                 .padding()
+                            Text("Introduce aquí un ingrediente que tengas.")
+                                .font(.subheadline)
 
                             TextField("Nuevo Ingrediente", text: $newIngredient)
                                 .padding()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                          
 
                             Button(action: {
                                 // Añadir el nuevo ingrediente a la lista
@@ -115,29 +122,31 @@ struct IngredientsListView: View {
                                 newIngredient = ""
                                 isAddingIngredient = false
                             }) {
-                                Text("Añadir")
+                                Text("Añadir a la lista")
                                     .padding()
                                     .foregroundColor(.white)
                                     .background(Color.orange)
                                     .cornerRadius(8)
                             }
                             .padding()
+
+                            Spacer() // Agrega espacio vertical después del botón
                         }
                         .padding()
                     }
+
+                    
+                    
                 }
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
             }
         }
     }
-
+    
     private func removeIngredient(_ ingredient: String) {
         // Eliminar el ingrediente de la lista
         if let index = ingredientsList.firstIndex(of: ingredient) {
             ingredientsList.remove(at: index)
         }
     }
-}
-#Preview {
-    IngredientsListView()
 }

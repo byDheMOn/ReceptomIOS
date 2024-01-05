@@ -9,12 +9,12 @@ import Foundation
 struct ChatgptRequestBody: Encodable {
     let model: String
     let prompt: String
-    let maxTokens: Int
+    let max_tokens: Int
     let temperature: Double
-    init(model: String, prompt: String, maxTokens: Int, temperature: Double) {
+    init(model: String, prompt: String, max_tokens: Int, temperature: Double) {
         self.model = model
         self.prompt = prompt
-        self.maxTokens = maxTokens
+        self.max_tokens = max_tokens
         self.temperature = temperature
     }
 }

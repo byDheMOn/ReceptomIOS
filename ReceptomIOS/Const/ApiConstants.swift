@@ -9,7 +9,7 @@ import Foundation
 struct ApiConstants {
     static let API_URL = "https://api.openai.com/v1/completions"
    
-    static let API_KEY = "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"
+    static let API_KEY = "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"
 
     static let API_MODEL = "gpt-3.5-turbo-instruct"
 }

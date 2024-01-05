@@ -7,4 +7,5 @@
 
 enum NetworkClientError: Error {
     case badUrl
+    case requestFailed
 }

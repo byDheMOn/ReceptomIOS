@@ -6,5 +6,5 @@
 //
 
 protocol ChatgptRemoteService {
-    func getChatResponse(order: Order) async throws -> [String]
+    func getChatResponse(order: Order) async throws -> Recipe
 }

@@ -11,7 +11,7 @@ struct GetChatgptResponseUseCase {
         self.chatgptRepository = chatgptRepository
     }
      
-    func execute(order: Order) async throws -> [String] {
+    func execute(order: Order) async throws -> Recipe {
         
         try await chatgptRepository.getChatResponse(order: order)
     }

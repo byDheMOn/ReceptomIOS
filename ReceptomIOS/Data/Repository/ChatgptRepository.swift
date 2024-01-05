@@ -7,10 +7,12 @@
 
 struct ChatgptRepository {
     private let remoteService: ChatgptRemoteService
+    
     init(remoteService: ChatgptRemoteService) {
         self.remoteService = remoteService
     }
-    func getChatResponse(order: Order) async throws -> [String] {
+    
+    func getChatResponse(order: Order) async throws -> Recipe {
         try await remoteService.getChatResponse(order: order)
     }
 }

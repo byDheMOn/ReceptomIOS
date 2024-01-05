@@ -9,108 +9,111 @@ import SwiftUI
 struct IngredientsDetailView: View {
     @EnvironmentObject var coordinator: Coordinator
     @StateObject private var viewModel: ChatgptViewModel
-    
-    init( viewModel: ChatgptViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-    }
+    private var ingredientsList: [String]
+    @State private var isLoading = true
+    init(viewModel: ChatgptViewModel, ingredientsList: [String]) {
+            _viewModel = StateObject(wrappedValue: viewModel)
+            self.ingredientsList = ingredientsList
+        }
     var body: some View {
         VStack {
             Spacer()
             
-            VStack {
-                // Contenedor del nombre de la receta
                 VStack {
-                    Text("Nombre de la receta")
-                        .fontWeight(.bold)
-                        .padding()
-                        .background(Color.white)
-                        .border(Color.gray)
-                        .cornerRadius(8)
-                        .padding(.vertical, 32)
-                }
-                .frame(width: 300)
-                
-                // Contenido visible cuando no está cargando
-               // if !isLoading {
-                   
-                    VStack() {
-                            ScrollView {
-                            // Preparación
-                            Text("PREPARACION:")
+                    if isLoading {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    } else {
+                        VStack {
+                            Text(viewModel.recipe.name)
                                 .fontWeight(.bold)
-                                .padding(.top, 10)
-                            Text("Preparacion de la receta")
-                            
-                            // Ingredientes
-                            Text("INGREDIENTES:")
-                                .fontWeight(.bold)
-                                .padding(.top, 10)
-                                Text("1, 2 ,3 ")
-                            
-                            // Cantidad
-                            Text("CANTIDAD:")
-                                .fontWeight(.bold)
-                                .padding(.top, 8)
-                            Text("EJ 4 Personas")
+                                .padding()
+                                .background(Color.white)
+                                .border(Color.gray)
+                                .cornerRadius(8)
+                                .padding(.vertical, 32)
                         }
-                        .padding(12)
-                        .background(Color.white)
-                        .border(Color.gray)
-                        .cornerRadius(8)
-                    }
-                    .frame(width: 300, height: 350)
-                //}
-
-                
-                Spacer()
-                
-                // Botones Siguiente y Guardar
-                HStack {
-                    Button(action: {
-                        let order = Order(ingredients: ["ingredient1", "ingredient2"], mode: true, recipeName: "RecipeName")
-                            Task {
-                                await viewModel.getChatgptResponse(order: order)
+                        .frame(width: 500)
+                        VStack() {
+                            ScrollView {
+                                // Preparación
+                                Text("PREPARACION:")
+                                    .fontWeight(.bold)
+                                    .padding(.top, 10)
+                                Text(viewModel.recipe.instructions)
+                                
+                                // Ingredientes
+                                Text("INGREDIENTES:")
+                                    .fontWeight(.bold)
+                                    .padding(.top, 10)
+                                Text(ingredientsList.joined())
+                                
+                                // Cantidad
+                                Text("CANTIDAD:")
+                                    .fontWeight(.bold)
+                                    .padding(.top, 8)
+                                Text("\(viewModel.recipe.serving) Personas")
                             }
-                      
-                    }) {
-                        Text("Siguiente")
-                        Image(systemName: "arrow.right.circle.fill")
+                            .padding(12)
+                            .background(Color.white)
+                            .border(Color.gray)
+                            .cornerRadius(8)
+                        }
+                        .frame(width: 300, height: 350)
                     }
-                    .padding()
-                    .background(Color(.systemOrange))
-                    .foregroundColor(.black)
-                    .cornerRadius(8)
-                    .padding(.horizontal, 16)
                     
-                    Button(action: {
-                        // Acción para Guardar
-                       
-                        // Mostrar diálogo de guardado
-                        // ...
-                    }) {
-                        Text("Guardar")
-                        Image(systemName: "square.and.arrow.down.fill")
+                    Spacer()
+                    
+                    HStack {
+                        Button(action: {
+                            
+                            
+                        }) {
+                            Text("Siguiente")
+                            Image(systemName: "arrow.right.circle.fill")
+                        }
+                        .padding()
+                        .background(Color(.systemOrange))
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 16)
+                        Button(action: {
+                            
+                        }) {
+                            Text("Guardar")
+                            Image(systemName: "square.and.arrow.down.fill")
+                        }
+                        .padding()
+                        .background(Color(.systemOrange))
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 16)
                     }
-                    .padding()
-                    .background(Color(.systemOrange))
-                    .foregroundColor(.black)
-                    .cornerRadius(8)
-                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
                 }
-                .padding(.bottom, 16)
+                
+                .padding()
+                .onAppear {
+                    let order = Order(ingredients: ingredientsList, mode: true, recipeName: "")
+                    Task {
+                        do {
+                            
+                            await viewModel.getChatgptResponse(order: order)
+                        } catch {
+                            // Maneja el error según sea necesario
+                            print("Error al cargar datos: \(error)")
+                        }
+                    
+                    }
+                    
+                }
+                .onChange(of: viewModel.recipe) { newValue in
+                            // Este bloque se ejecutará cuando myVariable cambie
+                            isLoading = false
+                        }
+                
             }
-        }
-        .padding()
-        .onAppear {
-            // Inicialización y carga de datos
-          
-        }
+        
     }
-
-  
-}
-
-#Preview {
-    let coordinator = Coordinator()
-    return coordinator.makeIngredientsDetailView()
 }
