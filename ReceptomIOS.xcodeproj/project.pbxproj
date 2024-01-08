@@ -13,7 +13,7 @@
 		2303F0D72B45579B003D7256 /* IngredientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303F0D62B45579B003D7256 /* IngredientsListView.swift */; };
 		2303F0D92B4557FF003D7256 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303F0D82B4557FF003D7256 /* RecipeListView.swift */; };
 		2303F0DB2B455860003D7256 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303F0DA2B455860003D7256 /* HomePageView.swift */; };
-		230F1D342B46A5C800C28607 /* getChatgptResponseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F1D332B46A5C800C28607 /* getChatgptResponseUseCase.swift */; };
+		230F1D342B46A5C800C28607 /* GetChatgptResponseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F1D332B46A5C800C28607 /* GetChatgptResponseUseCase.swift */; };
 		230F1D3B2B46A69000C28607 /* ChatgptRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F1D3A2B46A69000C28607 /* ChatgptRepository.swift */; };
 		230F1D3E2B46A71100C28607 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F1D3D2B46A71100C28607 /* Recipe.swift */; };
 		230F1D412B46A87E00C28607 /* ChatgptRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F1D402B46A87E00C28607 /* ChatgptRemoteService.swift */; };
@@ -30,6 +30,16 @@
 		234FFB232B481C5100148AF4 /* ChatgptMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FFB222B481C5100148AF4 /* ChatgptMapper.swift */; };
 		234FFB252B482D7600148AF4 /* ApiRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FFB242B482D7600148AF4 /* ApiRecipe.swift */; };
 		234FFB282B482DB700148AF4 /* ApiIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FFB272B482DB700148AF4 /* ApiIngredient.swift */; };
+		239A59E52B4BF23100FFE0CC /* CacheRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59E42B4BF23100FFE0CC /* CacheRecipe.swift */; };
+		239A59E72B4BFB1900FFE0CC /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59E62B4BFB1900FFE0CC /* RecipeViewModel.swift */; };
+		239A59E92B4BFBE600FFE0CC /* GetAllRecipesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59E82B4BFBE600FFE0CC /* GetAllRecipesUseCase.swift */; };
+		239A59EB2B4BFBF400FFE0CC /* GetRecipeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59EA2B4BFBF400FFE0CC /* GetRecipeUseCase.swift */; };
+		239A59ED2B4BFBFE00FFE0CC /* AddRecipeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59EC2B4BFBFE00FFE0CC /* AddRecipeUseCase.swift */; };
+		239A59EF2B4BFC1000FFE0CC /* DeleteRecipeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59EE2B4BFC1000FFE0CC /* DeleteRecipeUseCase.swift */; };
+		239A59F22B4BFC3F00FFE0CC /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59F12B4BFC3F00FFE0CC /* RecipeRepository.swift */; };
+		239A59F42B4C006200FFE0CC /* RecipeLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59F32B4C006200FFE0CC /* RecipeLocalService.swift */; };
+		239A59F92B4C01B000FFE0CC /* LiveRecipeLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59F82B4C01B000FFE0CC /* LiveRecipeLocalService.swift */; };
+		239A59FB2B4C118E00FFE0CC /* RecipeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A59FA2B4C118E00FFE0CC /* RecipeMapper.swift */; };
 		23ED0C162B45BA53009B865A /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ED0C152B45BA53009B865A /* RecipeDetailView.swift */; };
 		23ED0C182B45BA7C009B865A /* IngredientsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ED0C172B45BA7C009B865A /* IngredientsDetailView.swift */; };
 		23ED0C1B2B45CD5D009B865A /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 23ED0C1A2B45CD5D009B865A /* SlidingTabView */; };
@@ -43,7 +53,7 @@
 		2303F0D62B45579B003D7256 /* IngredientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListView.swift; sourceTree = "<group>"; };
 		2303F0D82B4557FF003D7256 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		2303F0DA2B455860003D7256 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
-		230F1D332B46A5C800C28607 /* getChatgptResponseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getChatgptResponseUseCase.swift; sourceTree = "<group>"; };
+		230F1D332B46A5C800C28607 /* GetChatgptResponseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChatgptResponseUseCase.swift; sourceTree = "<group>"; };
 		230F1D3A2B46A69000C28607 /* ChatgptRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatgptRepository.swift; sourceTree = "<group>"; };
 		230F1D3D2B46A71100C28607 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		230F1D402B46A87E00C28607 /* ChatgptRemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatgptRemoteService.swift; sourceTree = "<group>"; };
@@ -60,6 +70,16 @@
 		234FFB222B481C5100148AF4 /* ChatgptMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatgptMapper.swift; sourceTree = "<group>"; };
 		234FFB242B482D7600148AF4 /* ApiRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRecipe.swift; sourceTree = "<group>"; };
 		234FFB272B482DB700148AF4 /* ApiIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiIngredient.swift; sourceTree = "<group>"; };
+		239A59E42B4BF23100FFE0CC /* CacheRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheRecipe.swift; sourceTree = "<group>"; };
+		239A59E62B4BFB1900FFE0CC /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
+		239A59E82B4BFBE600FFE0CC /* GetAllRecipesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllRecipesUseCase.swift; sourceTree = "<group>"; };
+		239A59EA2B4BFBF400FFE0CC /* GetRecipeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipeUseCase.swift; sourceTree = "<group>"; };
+		239A59EC2B4BFBFE00FFE0CC /* AddRecipeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeUseCase.swift; sourceTree = "<group>"; };
+		239A59EE2B4BFC1000FFE0CC /* DeleteRecipeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecipeUseCase.swift; sourceTree = "<group>"; };
+		239A59F12B4BFC3F00FFE0CC /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
+		239A59F32B4C006200FFE0CC /* RecipeLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeLocalService.swift; sourceTree = "<group>"; };
+		239A59F82B4C01B000FFE0CC /* LiveRecipeLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRecipeLocalService.swift; sourceTree = "<group>"; };
+		239A59FA2B4C118E00FFE0CC /* RecipeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeMapper.swift; sourceTree = "<group>"; };
 		23ED0C152B45BA53009B865A /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		23ED0C172B45BA7C009B865A /* IngredientsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,7 +211,7 @@
 		230F1D312B46A58800C28607 /* Chatgpt */ = {
 			isa = PBXGroup;
 			children = (
-				230F1D332B46A5C800C28607 /* getChatgptResponseUseCase.swift */,
+				230F1D332B46A5C800C28607 /* GetChatgptResponseUseCase.swift */,
 			);
 			path = Chatgpt;
 			sourceTree = "<group>";
@@ -199,6 +219,10 @@
 		230F1D322B46A58F00C28607 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				239A59E82B4BFBE600FFE0CC /* GetAllRecipesUseCase.swift */,
+				239A59EA2B4BFBF400FFE0CC /* GetRecipeUseCase.swift */,
+				239A59EC2B4BFBFE00FFE0CC /* AddRecipeUseCase.swift */,
+				239A59EE2B4BFC1000FFE0CC /* DeleteRecipeUseCase.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -216,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				230F1D3A2B46A69000C28607 /* ChatgptRepository.swift */,
+				239A59F12B4BFC3F00FFE0CC /* RecipeRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -223,6 +248,7 @@
 		230F1D392B46A67600C28607 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				239A59F02B4BFC2400FFE0CC /* Recipe */,
 				230F1D3F2B46A85D00C28607 /* Chatgpt */,
 			);
 			path = Services;
@@ -231,6 +257,7 @@
 		230F1D3C2B46A70100C28607 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				239A59E32B4BF21100FFE0CC /* Local */,
 				234FFB262B482D9E00148AF4 /* Remote */,
 				230F1D3D2B46A71100C28607 /* Recipe.swift */,
 				230F1D462B46AC0F00C28607 /* Order.swift */,
@@ -241,9 +268,9 @@
 		230F1D3F2B46A85D00C28607 /* Chatgpt */ = {
 			isa = PBXGroup;
 			children = (
-				234FFB212B481C3A00148AF4 /* mapper */,
 				230F1D402B46A87E00C28607 /* ChatgptRemoteService.swift */,
-				230F1D4B2B46B52F00C28607 /* LiveChatgptRemoteService.swift */,
+				239A59F52B4C011B00FFE0CC /* Service */,
+				234FFB212B481C3A00148AF4 /* Mapper */,
 			);
 			path = Chatgpt;
 			sourceTree = "<group>";
@@ -252,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				230F1D442B46AA7600C28607 /* ChatgptViewModel.swift */,
+				239A59E62B4BFB1900FFE0CC /* RecipeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -281,12 +309,12 @@
 			path = NetworkClient;
 			sourceTree = "<group>";
 		};
-		234FFB212B481C3A00148AF4 /* mapper */ = {
+		234FFB212B481C3A00148AF4 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
 				234FFB222B481C5100148AF4 /* ChatgptMapper.swift */,
 			);
-			path = mapper;
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		234FFB262B482D9E00148AF4 /* Remote */ = {
@@ -298,6 +326,48 @@
 				234FFB272B482DB700148AF4 /* ApiIngredient.swift */,
 			);
 			path = Remote;
+			sourceTree = "<group>";
+		};
+		239A59E32B4BF21100FFE0CC /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				239A59E42B4BF23100FFE0CC /* CacheRecipe.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		239A59F02B4BFC2400FFE0CC /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				239A59F32B4C006200FFE0CC /* RecipeLocalService.swift */,
+				239A59F72B4C015B00FFE0CC /* Mapper */,
+				239A59F62B4C015200FFE0CC /* Service */,
+			);
+			path = Recipe;
+			sourceTree = "<group>";
+		};
+		239A59F52B4C011B00FFE0CC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				230F1D4B2B46B52F00C28607 /* LiveChatgptRemoteService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		239A59F62B4C015200FFE0CC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				239A59F82B4C01B000FFE0CC /* LiveRecipeLocalService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		239A59F72B4C015B00FFE0CC /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				239A59FA2B4C118E00FFE0CC /* RecipeMapper.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		23ED0C142B45BA22009B865A /* Detail */ = {
@@ -386,27 +456,37 @@
 			files = (
 				230F1D4A2B46AFB300C28607 /* ApiConstants.swift in Sources */,
 				23ED0C182B45BA7C009B865A /* IngredientsDetailView.swift in Sources */,
+				239A59E92B4BFBE600FFE0CC /* GetAllRecipesUseCase.swift in Sources */,
+				239A59FB2B4C118E00FFE0CC /* RecipeMapper.swift in Sources */,
 				234FFB232B481C5100148AF4 /* ChatgptMapper.swift in Sources */,
 				23ED0C162B45BA53009B865A /* RecipeDetailView.swift in Sources */,
 				230F1D532B46B70E00C28607 /* NetworkClientError.swift in Sources */,
 				2303F0D92B4557FF003D7256 /* RecipeListView.swift in Sources */,
 				230F1D452B46AA7600C28607 /* ChatgptViewModel.swift in Sources */,
 				230F1D512B46B5BC00C28607 /* URLSessionNetworkClient.swift in Sources */,
+				239A59EB2B4BFBF400FFE0CC /* GetRecipeUseCase.swift in Sources */,
+				239A59E52B4BF23100FFE0CC /* CacheRecipe.swift in Sources */,
 				2303F0C62B455665003D7256 /* ReceptomIOSApp.swift in Sources */,
 				230F1D4F2B46B56B00C28607 /* NetworkClient.swift in Sources */,
 				230F1D552B46BD1D00C28607 /* ApiResponse.swift in Sources */,
 				230F1D412B46A87E00C28607 /* ChatgptRemoteService.swift in Sources */,
+				239A59E72B4BFB1900FFE0CC /* RecipeViewModel.swift in Sources */,
 				230F1D4C2B46B52F00C28607 /* LiveChatgptRemoteService.swift in Sources */,
 				234FFB282B482DB700148AF4 /* ApiIngredient.swift in Sources */,
 				230F1D572B46BEB500C28607 /* ChatgptRequestBody.swift in Sources */,
-				230F1D342B46A5C800C28607 /* getChatgptResponseUseCase.swift in Sources */,
+				239A59F42B4C006200FFE0CC /* RecipeLocalService.swift in Sources */,
+				239A59F22B4BFC3F00FFE0CC /* RecipeRepository.swift in Sources */,
+				230F1D342B46A5C800C28607 /* GetChatgptResponseUseCase.swift in Sources */,
 				2303F0D72B45579B003D7256 /* IngredientsListView.swift in Sources */,
 				234FFB252B482D7600148AF4 /* ApiRecipe.swift in Sources */,
 				230F1D3B2B46A69000C28607 /* ChatgptRepository.swift in Sources */,
 				230F1D472B46AC0F00C28607 /* Order.swift in Sources */,
 				2303F0DB2B455860003D7256 /* HomePageView.swift in Sources */,
+				239A59F92B4C01B000FFE0CC /* LiveRecipeLocalService.swift in Sources */,
+				239A59EF2B4BFC1000FFE0CC /* DeleteRecipeUseCase.swift in Sources */,
 				230F1D3E2B46A71100C28607 /* Recipe.swift in Sources */,
 				230F1D592B46C73500C28607 /* Coordinator.swift in Sources */,
+				239A59ED2B4BFBFE00FFE0CC /* AddRecipeUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 import Foundation
 class ChatgptViewModel : ObservableObject {
     private let getChatgptResponseUseCase: GetChatgptResponseUseCase
-    @Published var recipe = Recipe(id: nil, name: "", ingredients: "", instructions: "", serving: 0)
+    @Published var recipe = Recipe( name: "", ingredients: "", instructions: "", serving: 0)
     @Published var showErrorMessage = false
     init(getChatgptResponseUseCase: GetChatgptResponseUseCase) {
         self.getChatgptResponseUseCase = getChatgptResponseUseCase

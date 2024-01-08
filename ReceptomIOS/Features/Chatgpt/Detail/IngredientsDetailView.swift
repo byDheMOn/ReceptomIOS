@@ -8,11 +8,13 @@
 import SwiftUI
 struct IngredientsDetailView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @StateObject private var viewModel: ChatgptViewModel
+    @StateObject private var chatgptViewModel: ChatgptViewModel
+    @StateObject private var recipeViewModel: RecipeViewModel
     private var ingredientsList: [String]
     @State private var isLoading = true
-    init(viewModel: ChatgptViewModel, ingredientsList: [String]) {
-            _viewModel = StateObject(wrappedValue: viewModel)
+    init(chatgptViewModel: ChatgptViewModel, recipeViewModel: RecipeViewModel, ingredientsList: [String]) {
+        _chatgptViewModel = StateObject(wrappedValue: chatgptViewModel)
+        _recipeViewModel = StateObject(wrappedValue: recipeViewModel)
             self.ingredientsList = ingredientsList
         }
     var body: some View {
@@ -26,7 +28,7 @@ struct IngredientsDetailView: View {
                         Spacer()
                     } else {
                         VStack {
-                            Text(viewModel.recipe.name)
+                            Text(chatgptViewModel.recipe.name)
                                 .fontWeight(.bold)
                                 .padding()
                                 .background(Color.white)
@@ -41,7 +43,7 @@ struct IngredientsDetailView: View {
                                 Text("PREPARACION:")
                                     .fontWeight(.bold)
                                     .padding(.top, 10)
-                                Text(viewModel.recipe.instructions)
+                                Text(chatgptViewModel.recipe.instructions)
                                 
                                 // Ingredientes
                                 Text("INGREDIENTES:")
@@ -53,7 +55,7 @@ struct IngredientsDetailView: View {
                                 Text("CANTIDAD:")
                                     .fontWeight(.bold)
                                     .padding(.top, 8)
-                                Text("\(viewModel.recipe.serving) Personas")
+                                Text("\(chatgptViewModel.recipe.serving) Personas")
                             }
                             .padding(12)
                             .background(Color.white)
@@ -79,7 +81,19 @@ struct IngredientsDetailView: View {
                         .cornerRadius(8)
                         .padding(.horizontal, 16)
                         Button(action: {
-                            
+                            let recipeToSave = Recipe(
+                                name: chatgptViewModel.recipe.name,
+                                ingredients:chatgptViewModel.recipe.ingredients,
+                                instructions: chatgptViewModel.recipe.instructions,
+                                serving: chatgptViewModel.recipe.serving)
+                            Task {
+                                do {
+                                    await recipeViewModel.fetchAddRecipes(recipe: recipeToSave)
+                                } catch {
+                                    // Maneja el error según sea necesario
+                                    print("Error al cargar datos: \(error)")
+                                }
+                            }
                         }) {
                             Text("Guardar")
                             Image(systemName: "square.and.arrow.down.fill")
@@ -98,20 +112,17 @@ struct IngredientsDetailView: View {
                     let order = Order(ingredients: ingredientsList, mode: true, recipeName: "")
                     Task {
                         do {
-                            
-                            await viewModel.getChatgptResponse(order: order)
+                            await chatgptViewModel.getChatgptResponse(order: order)
                         } catch {
                             // Maneja el error según sea necesario
                             print("Error al cargar datos: \(error)")
                         }
-                    
                     }
-                    
                 }
-                .onChange(of: viewModel.recipe) { newValue in
+                .onChange(of: chatgptViewModel.recipe) { newValue in
                             // Este bloque se ejecutará cuando myVariable cambie
                             isLoading = false
-                        }
+                }
                 
             }
         

@@ -5,6 +5,7 @@
 //  Created by Jorge Ordax on 5/1/24.
 //
 
+import Foundation
 struct ChatgptMapper {
     static func toRemote(type: [String], mode: Bool, recipeName: String) -> ChatgptRequestBody {
         let prompt: String
@@ -27,7 +28,6 @@ struct ChatgptMapper {
     static func fromRemote(type: ApiRecipe) -> Recipe {
            let ingredientsString = type.ingredients.map { $0.name }.joined(separator: ",")
            return Recipe(
-                id: type.id,
                 name: type.name,
                 ingredients: ingredientsString,
                 instructions: type.instructions,

@@ -34,7 +34,7 @@ class URLSessionNetworkClient: NetworkClient {
             }
 
             let decodedData = try JSONDecoder().decode(T.self, from: data)
-            //print("URLSessionNC OFF = \(decodedData)")
+            print("URLSessionNC OFF = \(decodedData)")
             return decodedData
         } catch {
             print("Error in URLSessionNC: \(error)")

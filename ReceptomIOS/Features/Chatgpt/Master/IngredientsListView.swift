@@ -79,9 +79,6 @@ struct IngredientsListView: View {
                         }
                     }
                     .disabled(ingredientsList.isEmpty)
-                    //.sheet(isPresented: $coordinator.isDetailViewPresented) {
-                      //  coordinator.makeIngredientsDetailView()
-                    //}
                     .alert(isPresented: $showAlert) {
                         Alert(
                             title: Text("Lista de ingredientes vacía"),

@@ -4,9 +4,9 @@
 //
 //  Created by Jorge Ordax on 4/1/24.
 //
-
-struct Recipe: Identifiable, Decodable, Equatable {
-    var id: Int?
+import Foundation
+struct Recipe: Identifiable, Decodable, Equatable, Hashable {
+    var id: UUID?
     var name: String
     var ingredients: String
     var instructions: String
