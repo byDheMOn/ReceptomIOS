@@ -2,17 +2,17 @@
 //  RecipeRepository.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 8/1/24.
+//  Created by Pablo Mediero on 8/1/24.
 //
 
 import Foundation
 struct RecipeRepository {
-  
     private let localService: RecipeLocalService
     
     init(localService: RecipeLocalService) {
         self.localService = localService
     }
+    
     func getAllRecipes() async throws -> [Recipe] {
         return try await localService.getAllRecipes()
     }

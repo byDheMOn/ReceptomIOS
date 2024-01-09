@@ -2,13 +2,15 @@
 //  RecipeDetailView.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 3/1/24.
+//  Created by Pablo Mediero on 3/1/24.
 //
 
 import SwiftUI
 import SlidingTabView
 struct RecipeDetailView: View {
     private var idRecipe: UUID
+    @State private var showingDeleteAlert = false
+    @Environment(\.presentationMode) var presentationMode
     @StateObject private var recipeViewModel: RecipeViewModel
     @State private var tabIndex = 0
     @EnvironmentObject var coordinator: Coordinator
@@ -31,36 +33,74 @@ struct RecipeDetailView: View {
                 .fontWeight(.bold)
             
             VStack {
-                SlidingTabView(selection: $tabIndex, tabs: ["Ingredientes", "Preparación","Cantidad"], animation: .easeOut, selectionBarColor: .orange ).accentColor(.orange)
+                SlidingTabView(selection: $tabIndex,
+                               tabs: ["Ingredientes", "Preparación","Cantidad"],
+                               activeAccentColor: .orange,
+                               
+                               selectionBarColor: .orange ).accentColor(.orange)
             }
-            
+
             if tabIndex == 0 {
-                Text(recipeViewModel.recipe.ingredients)
-                    .padding(.bottom, 5)
+                ScrollView {
+                    VStack(spacing: 8) {
+                        Text("Ingredientes").font(.title)
+                        Text("Lista de ingredientes:").font(.subheadline)
+                        let ingredientsArray = recipeViewModel.recipe.ingredients.components(separatedBy: ",")
+                        ForEach(ingredientsArray, id: \.self) { ingredient in
+                           let detailedIngredients = ingredient.components(separatedBy: "\n")
+                           ForEach(detailedIngredients, id: \.self) { detailedIngredient in
+                               Text(detailedIngredient)
+                           }
+                       }
+                    }.padding(10)
+                }
             } else if tabIndex == 1 {
-                Text(recipeViewModel.recipe.instructions)
+                ScrollView {
+                    VStack(spacing: 8) {
+                        Text("Instrucciones").font(.title)
+                        Text("Pasos para preparar la receta:").font(.subheadline)
+                        Text(recipeViewModel.recipe.instructions)
+                    }.padding(10)
+                }
             } else if tabIndex == 2 {
-                Text("\(recipeViewModel.recipe.serving) personas")
+                ScrollView {
+                    VStack(spacing: 8) {
+                        Text("Cantidad").font(.title)
+                        Text("Número de personas recomendado:").font(.subheadline)
+                        Text("\(recipeViewModel.recipe.serving) personas")
+                    }.padding(10)
+                }
             }
-            
             Spacer()
         }
         .navigationBarItems(trailing:
             HStack {
                 Button(action: {
-                    // Acción del segundo botón
+                    showingDeleteAlert = true
                 }) {
                     Image(systemName: "trash").foregroundColor(.black)
                 }
             }
         )
+        .alert(isPresented: $showingDeleteAlert) {
+                Alert(
+                    title: Text("¿Eliminar receta?"),
+                    message: Text("¿Estás seguro de que quieres eliminar esta receta?"),
+                    primaryButton: .destructive(Text("Sí")) {
+                        Task {
+                            do {
+                                await recipeViewModel.fetchDeleteRecipes(recipe: recipeViewModel.recipe)
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                    },
+                    secondaryButton: .cancel(Text("No"))
+                )
+            }
         .onAppear {
             Task {
                 do {
                     await recipeViewModel.fetchGetRecipes(idRecipe: idRecipe)
-                } catch {
-                    // Maneja el error según sea necesario
-                    print("Error al cargar datos: \(error)")
                 }
             }
         }

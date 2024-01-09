@@ -2,7 +2,7 @@
 //  LiveRecipeLocalService.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 8/1/24.
+//  Created by Pablo Mediero on 8/1/24.
 //
 
 import Foundation
@@ -26,7 +26,6 @@ struct LiveRecipeLocalService: RecipeLocalService {
         let mappedCacheRecipeList = recipeCacheList.map{ cachedRecipe in
             RecipeMapper.fromLocal(type:cachedRecipe)
         }
-      
         return mappedCacheRecipeList
     }
     
@@ -34,9 +33,7 @@ struct LiveRecipeLocalService: RecipeLocalService {
     func getRecipe(idRecipe: UUID) async throws -> Recipe {
         let fetchDescriptor = FetchDescriptor<CacheRecipe>()
         let allRecipes = try modelContext.fetch(fetchDescriptor)
-        print("LiveService: \(allRecipes)" )
         if let cachedRecipe = allRecipes.first(where: { $0.id == idRecipe }) {
-           
             return RecipeMapper.fromLocal(type: cachedRecipe)
         } else {
             return emptyRecipe
@@ -46,23 +43,33 @@ struct LiveRecipeLocalService: RecipeLocalService {
     
     @MainActor
     func addRecipe(recipe: Recipe) async throws {
-        
         let mapRecipe = RecipeMapper.toLocal(type: recipe)
         mapRecipe.id = UUID()
         modelContext.insert(mapRecipe)
         do {
             try modelContext.save()
-            print("Receta insertada")
-            
         } catch {
             print("Error al guardar la receta en el contexto: \(error)")
         }
-    
-        
     }
     
     
+    @MainActor
     func deleteRecipe(recipe: Recipe) async throws {
-        
+        guard let idToDelete = recipe.id else {
+            return
+        }
+
+        let fetchDescriptor = FetchDescriptor<CacheRecipe>()
+        do {
+            let allRecipes = try modelContext.fetch(fetchDescriptor)
+            if let recipeToDelete = allRecipes.first(where: { $0.id == idToDelete }) {
+                modelContext.delete(recipeToDelete)
+                try modelContext.save()
+            } 
+        } catch {
+            print("Error al eliminar la receta: \(error)")
+        }
     }
+
 }

@@ -2,7 +2,7 @@
 //  GetAllRecipesUseCase.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 8/1/24.
+//  Created by Pablo Mediero on 8/1/24.
 //
 
 struct GetAllRecipesUseCase {
@@ -11,6 +11,7 @@ struct GetAllRecipesUseCase {
     init(recipeRepository: RecipeRepository) {
         self.recipeRepository = recipeRepository
     }
+    
     func execute() async throws -> [Recipe] {
         try await recipeRepository.getAllRecipes()
     }

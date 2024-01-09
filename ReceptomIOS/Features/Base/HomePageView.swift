@@ -2,7 +2,7 @@
 //  HomePageView.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 3/1/24.
+//  Created by Pablo Mediero on 3/1/24.
 //
 import SwiftUI
 
@@ -10,15 +10,15 @@ import SwiftUI
 struct HomePageView: View {
     @EnvironmentObject var coordinator: Coordinator
     init() {
-           // Configuración personalizada de la barra de navegación
-           UINavigationBar.appearance().barTintColor = UIColor.black
-           UINavigationBar.appearance().backgroundColor = UIColor.orange
-       }
+        UINavigationBar.appearance().barTintColor = UIColor.black
+        UINavigationBar.appearance().backgroundColor = UIColor.orange
+    }
 
     var body: some View {
+       
         NavigationView {
             ZStack {
-                Color.orange.edgesIgnoringSafeArea(.all) // Fondo naranja para toda la vista
+                Color.orange.edgesIgnoringSafeArea(.all)
                 
                 TabView {
                     coordinator.makeIngredientsListView()
@@ -26,7 +26,7 @@ struct HomePageView: View {
                             Label("Buscar", systemImage: "magnifyingglass")
                         }
                         .tag(0)
-
+                    
                     coordinator.makeRecipeListView()
                         .tabItem {
                             Label("Recetas", systemImage: "book")
@@ -36,6 +36,7 @@ struct HomePageView: View {
                 .navigationTitle("Receptom")
                 .accentColor(.black)
                 .navigationBarTitleDisplayMode(.inline)
+                .statusBar(hidden: false)
             }
         }
     }

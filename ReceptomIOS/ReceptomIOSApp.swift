@@ -2,7 +2,7 @@
 //  ReceptomIOSApp.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 3/1/24.
+//  Created by Pablo Mediero on 3/1/24.
 //
 
 import SwiftUI

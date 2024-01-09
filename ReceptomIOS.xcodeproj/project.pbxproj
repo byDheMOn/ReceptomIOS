@@ -279,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				230F1D442B46AA7600C28607 /* ChatgptViewModel.swift */,
-				239A59E62B4BFB1900FFE0CC /* RecipeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -287,6 +286,7 @@
 		230F1D432B46AA6700C28607 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				239A59E62B4BFB1900FFE0CC /* RecipeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

@@ -2,7 +2,7 @@
 //  RecipeViewModel.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 8/1/24.
+//  Created by Pablo Mediero on 8/1/24.
 //
 
 import Foundation
@@ -33,7 +33,6 @@ class RecipeViewModel : ObservableObject {
     
     func fetchGetRecipes(idRecipe: UUID) async {
         do {
-            print("Viewmodel Id: \(idRecipe)")
             recipe = try await getRecipeUseUseCase.execute(idRecipe: idRecipe)
         }catch {
             showErrorMessage = true

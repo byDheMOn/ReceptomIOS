@@ -2,7 +2,7 @@
 //  Coordinator.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 4/1/24.
+//  Created by Pablo Mediero on 4/1/24.
 //
 
 import Foundation
@@ -46,7 +46,6 @@ class Coordinator: ObservableObject {
     func makeIngredientsListView() -> IngredientsListView {
         IngredientsListView(viewModel: makeChatgptViewModel())
     }
-    
     
     func makeIngredientsDetailView(with ingredientsList: [String]) -> IngredientsDetailView {
             let chatgptViewModel = makeChatgptViewModel()

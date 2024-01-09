@@ -2,7 +2,7 @@
 //  RecipeListView.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 3/1/24.
+//  Created by Pablo Mediero on 3/1/24.
 //
 
 import SwiftUI
@@ -13,10 +13,9 @@ struct RecipesListView: View {
     @State private var recipeList: [Recipe] = []
     @EnvironmentObject var coordinator: Coordinator
     @StateObject private var recipeViewModel: RecipeViewModel
-    @State private var isLoading: Bool = true // Agregamos una variable para controlar el estado de carga
+    @State private var isLoading: Bool = true
 
     init(recipeViewModel: RecipeViewModel) {
-        UINavigationBar.appearance().tintColor = UIColor.black
         _recipeViewModel = StateObject(wrappedValue: recipeViewModel)
     }
 
@@ -71,6 +70,7 @@ struct RecipesListView: View {
                     .italic()
                     .padding(EdgeInsets(top: 11.0, leading: 0, bottom: 0, trailing: 0))
             }
+           
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 16))
             .onAppear {
                 Task {
@@ -79,7 +79,6 @@ struct RecipesListView: View {
                         if let recipes = recipeViewModel.recipeList as? [Recipe] {
                             recipeList = recipes
                         } else {
-                            // Manejar el caso en que la conversión falla
                             print("Error: No se pudo convertir recipeViewModel.recipeList a [Recipe]")
                         }
                     }

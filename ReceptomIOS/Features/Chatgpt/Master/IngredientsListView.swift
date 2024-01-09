@@ -2,7 +2,7 @@
 //  IngredientsListView.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 3/1/24.
+//  Created by Pablo Mediero on 3/1/24.
 //
 import SwiftUI
 
@@ -76,7 +76,7 @@ struct IngredientsListView: View {
                                 .background(Color.orange)
                                 .cornerRadius(8)
                                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                        }
+                        }.navigationBarBackButtonHidden(true)
                     }
                     .disabled(ingredientsList.isEmpty)
                     .alert(isPresented: $showAlert) {
@@ -88,7 +88,6 @@ struct IngredientsListView: View {
                     }
 
                     Button(action: {
-                        // Mostrar el diálogo para añadir ingredientes
                         isAddingIngredient = true
                     }) {
                         Label("Añadir", systemImage: "cart")
@@ -98,9 +97,9 @@ struct IngredientsListView: View {
                             .cornerRadius(8)
                     }
                     .sheet(isPresented: $isAddingIngredient) {
-                        // Diálogo para añadir ingredientes
+                       
                         VStack(alignment: .center, spacing: 16) {
-                            Spacer()// Alinea los elementos al centro
+                            Spacer()
                             Text("Añadir Ingrediente")
                                 .font(.title)
                                 .padding()
@@ -111,13 +110,12 @@ struct IngredientsListView: View {
                                 .padding()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                          
-
                             Button(action: {
-                                // Añadir el nuevo ingrediente a la lista
-                                ingredientsList.append(newIngredient)
-                                newIngredient = ""
-                                isAddingIngredient = false
+                                if !newIngredient.isEmpty {
+                                       ingredientsList.append(newIngredient)
+                                       newIngredient = ""
+                                       isAddingIngredient = false
+                                }
                             }) {
                                 Text("Añadir a la lista")
                                     .padding()
@@ -126,14 +124,10 @@ struct IngredientsListView: View {
                                     .cornerRadius(8)
                             }
                             .padding()
-
-                            Spacer() // Agrega espacio vertical después del botón
+                            Spacer()
                         }
                         .padding()
                     }
-
-                    
-                    
                 }
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
             }
@@ -141,7 +135,6 @@ struct IngredientsListView: View {
     }
     
     private func removeIngredient(_ ingredient: String) {
-        // Eliminar el ingrediente de la lista
         if let index = ingredientsList.firstIndex(of: ingredient) {
             ingredientsList.remove(at: index)
         }

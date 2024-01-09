@@ -2,7 +2,7 @@
 //  ChatgptRepository.swift
 //  ReceptomIOS
 //
-//  Created by Jorge Ordax on 4/1/24.
+//  Created by Pablo Mediero on 4/1/24.
 //
 
 struct ChatgptRepository {
